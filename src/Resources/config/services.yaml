@@ -1,0 +1,22 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  WechatMiniProgramDeliveryReturnBundle\AdminMenu: ~
+
+  WechatMiniProgramDeliveryReturnBundle\Command\:
+    resource: '../../Command/'
+  WechatMiniProgramDeliveryReturnBundle\Controller\:
+    resource: '../../Controller/'
+  WechatMiniProgramDeliveryReturnBundle\EventSubscriber\:
+    resource: '../../EventSubscriber/'
+  WechatMiniProgramDeliveryReturnBundle\MessageHandler\:
+    resource: '../../MessageHandler/'
+  WechatMiniProgramDeliveryReturnBundle\Procedure\:
+    resource: '../../Procedure/'
+  WechatMiniProgramDeliveryReturnBundle\Repository\:
+    resource: '../../Repository/'
+  WechatMiniProgramDeliveryReturnBundle\Service\:
+    resource: '../../Service/'
