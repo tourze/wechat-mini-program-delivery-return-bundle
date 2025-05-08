@@ -4,7 +4,6 @@ namespace WechatMiniProgramDeliveryReturnBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use DoctrineEnhanceBundle\Repository\CommonRepositoryAware;
 use WechatMiniProgramDeliveryReturnBundle\Entity\DeliveryReturnOrder;
 
 /**
@@ -15,7 +14,6 @@ use WechatMiniProgramDeliveryReturnBundle\Entity\DeliveryReturnOrder;
  */
 class DeliveryReturnOrderRepository extends ServiceEntityRepository
 {
-    use CommonRepositoryAware;
 
     public function __construct(ManagerRegistry $registry)
     {
