@@ -14,7 +14,13 @@
     "doctrine/dbal": "^4.0",
     "doctrine/doctrine-bundle": "^2.13",
     "psr/log": "^3|^2|^1",
-    "symfony/http-kernel": "^6.4"
+    "symfony/http-kernel": "^6.4",
+    "symfony/console": "^6.4",
+    "symfony/messenger": "^6.4",
+    "nesbot/carbon": "^2.72 || ^3",
+    "tourze/doctrine-snowflake-bundle": "0.1.*",
+    "tourze/arrayable": "0.0.*",
+    "doctrine/persistence": "^3.1 || ^4"
   },
   "autoload": {
     "psr-4": {
