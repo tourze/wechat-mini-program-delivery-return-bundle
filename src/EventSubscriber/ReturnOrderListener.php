@@ -7,7 +7,7 @@ use Doctrine\ORM\Events;
 use Psr\Log\LoggerInterface;
 use Tourze\JsonRPC\Core\Exception\ApiException;
 use Tourze\Symfony\Async\Attribute\Async;
-use WechatMiniProgramAuthBundle\Repository\UserRepository;
+use Tourze\WechatMiniProgramUserContracts\UserLoaderInterface;
 use WechatMiniProgramBundle\Service\Client;
 use WechatMiniProgramDeliveryReturnBundle\Entity\DeliveryReturnOrder;
 use WechatMiniProgramDeliveryReturnBundle\Request\AddRequest;
@@ -20,14 +20,14 @@ class ReturnOrderListener
 {
     public function __construct(
         private readonly Client $client,
-        private readonly UserRepository $userRepository,
+        private readonly UserLoaderInterface $userLoader,
         private readonly LoggerInterface $logger,
     ) {
     }
 
     public function prePersist(DeliveryReturnOrder $obj): void
     {
-        $user = $this->userRepository->findOneBy(['openId' => $obj->getOpenId()]);
+        $user = $this->userLoader->loadUserByOpenId($obj->getOpenId());
         if (!$user) {
             throw new ApiException('找不到小程序用户');
         }
