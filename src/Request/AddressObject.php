@@ -114,7 +114,7 @@ class AddressObject
 
     public static function fromArray(array $item): static
     {
-        $obj = new static();
+        $obj = new self();
         $obj->setName($item['name']);
         $obj->setMobile($item['mobile']);
         $obj->setCountry($item['country']);
