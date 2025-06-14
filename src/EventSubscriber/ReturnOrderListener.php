@@ -6,7 +6,7 @@ use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
 use Doctrine\ORM\Events;
 use Psr\Log\LoggerInterface;
 use Tourze\JsonRPC\Core\Exception\ApiException;
-use Tourze\Symfony\Async\Attribute\Async;
+use Tourze\Symfony\AopAsyncBundle\Attribute\Async;
 use Tourze\WechatMiniProgramUserContracts\UserLoaderInterface;
 use WechatMiniProgramBundle\Service\Client;
 use WechatMiniProgramDeliveryReturnBundle\Entity\DeliveryReturnOrder;
