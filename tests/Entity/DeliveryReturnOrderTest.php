@@ -100,7 +100,7 @@ class DeliveryReturnOrderTest extends TestCase
     public function testCreateTime(): void
     {
         $entity = new DeliveryReturnOrder();
-        $now = new \DateTime();
+        $now = new \DateTimeImmutable();
         
         $entity->setCreateTime($now);
         $this->assertSame($now, $entity->getCreateTime());
@@ -109,7 +109,7 @@ class DeliveryReturnOrderTest extends TestCase
     public function testUpdateTime(): void
     {
         $entity = new DeliveryReturnOrder();
-        $now = new \DateTime();
+        $now = new \DateTimeImmutable();
         
         $entity->setUpdateTime($now);
         $this->assertSame($now, $entity->getUpdateTime());
