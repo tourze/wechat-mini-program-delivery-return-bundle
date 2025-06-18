@@ -28,12 +28,9 @@ class QueryStatusRequestTest extends TestCase
     public function testGetRequestOptions(): void
     {
         $options = $this->request->getRequestOptions();
-        
-        $this->assertIsArray($options);
         $this->assertArrayHasKey('json', $options);
         
         $json = $options['json'];
-        $this->assertIsArray($json);
         $this->assertArrayHasKey('return_id', $json);
         $this->assertSame('return-id-123', $json['return_id']);
     }

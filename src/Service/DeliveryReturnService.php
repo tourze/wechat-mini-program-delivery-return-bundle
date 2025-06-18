@@ -30,16 +30,16 @@ class DeliveryReturnService
             $request->setReturnId($order->getReturnId());
             $response = $this->client->request($request);
             $order->setStatus(DeliveryReturnStatus::tryFrom($response['status']));
-            if (isset($response['waybill_id'])) {
+            if ((bool) isset($response['waybill_id'])) {
                 $order->setWaybillId($response['waybill_id']);
             }
-            if (isset($response['order_status'])) {
+            if ((bool) isset($response['order_status'])) {
                 $order->setOrderStatus(DeliveryReturnOrderStatus::tryFrom($response['order_status']));
             }
-            if (isset($response['delivery_name'])) {
+            if ((bool) isset($response['delivery_name'])) {
                 $order->setDeliveryName($response['delivery_name']);
             }
-            if (isset($response['delivery_id'])) {
+            if ((bool) isset($response['delivery_id'])) {
                 $order->setDeliveryId($response['delivery_id']);
             }
             $this->entityManager->persist($order);

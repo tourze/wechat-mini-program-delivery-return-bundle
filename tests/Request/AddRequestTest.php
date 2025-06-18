@@ -58,12 +58,9 @@ class AddRequestTest extends TestCase
     public function testGetRequestOptionsWithoutUserAddr(): void
     {
         $options = $this->request->getRequestOptions();
-        
-        $this->assertIsArray($options);
         $this->assertArrayHasKey('json', $options);
         
         $json = $options['json'];
-        $this->assertIsArray($json);
         $this->assertArrayHasKey('shop_order_id', $json);
         $this->assertArrayHasKey('biz_addr', $json);
         $this->assertArrayHasKey('openid', $json);
@@ -90,8 +87,6 @@ class AddRequestTest extends TestCase
         $this->request->setUserAddr($this->userAddr);
         
         $options = $this->request->getRequestOptions();
-        
-        $this->assertIsArray($options);
         $this->assertArrayHasKey('json', $options);
         
         $json = $options['json'];

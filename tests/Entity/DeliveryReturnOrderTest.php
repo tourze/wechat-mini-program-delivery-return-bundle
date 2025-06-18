@@ -150,8 +150,6 @@ class DeliveryReturnOrderTest extends TestCase
         $entity->setUserAddress($userAddress);
         
         $apiArray = $entity->retrieveApiArray();
-        
-        $this->assertIsArray($apiArray);
         $this->assertArrayHasKey('shopOrderId', $apiArray);
         $this->assertArrayHasKey('bizAddress', $apiArray);
         $this->assertArrayHasKey('userAddress', $apiArray);
