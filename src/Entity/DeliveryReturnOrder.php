@@ -15,7 +15,7 @@ use WechatMiniProgramDeliveryReturnBundle\Repository\DeliveryReturnOrderReposito
 #[ORM\Entity(repositoryClass: DeliveryReturnOrderRepository::class)]
 #[ORM\Table(name: 'wechat_mini_program_delivery_return_order', options: ['comment' => '退货单'])]
 class DeliveryReturnOrder implements ApiArrayInterface
-{
+, \Stringable{
     use TimestampableAware;
 
     #[ORM\Id]
@@ -254,5 +254,10 @@ class DeliveryReturnOrder implements ApiArrayInterface
             'deliveryName' => $this->getDeliveryName(),
             'deliveryId' => $this->getDeliveryId(),
         ];
+    }
+
+    public function __toString(): string
+    {
+        return (string) $this->getId();
     }
 }
