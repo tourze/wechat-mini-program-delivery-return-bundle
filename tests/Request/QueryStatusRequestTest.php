@@ -56,6 +56,8 @@ class QueryStatusRequestTest extends TestCase
         
         $this->expectException(\Error::class);
         $this->expectExceptionMessage('must not be accessed before initialization');
-        $request->getReturnId();
+        $returnId = $request->getReturnId();
+        // The above call should throw an exception, so this line should never be reached
+        $this->fail('Expected exception was not thrown');
     }
 } 

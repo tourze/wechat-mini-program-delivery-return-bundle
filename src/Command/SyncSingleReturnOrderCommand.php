@@ -11,7 +11,7 @@ use Tourze\LockCommandBundle\Command\LockableCommand;
 use WechatMiniProgramDeliveryReturnBundle\Repository\DeliveryReturnOrderRepository;
 use WechatMiniProgramDeliveryReturnBundle\Service\DeliveryReturnService;
 
-#[AsCommand(name: SyncSingleReturnOrderCommand::NAME, description: '同步单个退货信息到本地')]
+#[AsCommand(name: self::NAME, description: '同步单个退货信息到本地')]
 class SyncSingleReturnOrderCommand extends LockableCommand
 {
     public const NAME = 'wechat-delivery-return:sync-single-return-order';
@@ -34,7 +34,7 @@ class SyncSingleReturnOrderCommand extends LockableCommand
         $order = $this->orderRepository->findOneBy([
             'shopOrderId' => $input->getArgument('shopOrderId'),
         ]);
-        if (!$order) {
+        if ($order === null) {
             throw new \RuntimeException('找不到退货单');
         }
 

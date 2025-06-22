@@ -8,6 +8,7 @@ use Psr\Log\LoggerInterface;
 use Tourze\JsonRPC\Core\Exception\ApiException;
 use Tourze\Symfony\AopAsyncBundle\Attribute\Async;
 use Tourze\WechatMiniProgramUserContracts\UserLoaderInterface;
+use WechatMiniProgramAuthBundle\Entity\User;
 use WechatMiniProgramBundle\Service\Client;
 use WechatMiniProgramDeliveryReturnBundle\Entity\DeliveryReturnOrder;
 use WechatMiniProgramDeliveryReturnBundle\Request\AddRequest;
@@ -28,8 +29,12 @@ class ReturnOrderListener
     public function prePersist(DeliveryReturnOrder $obj): void
     {
         $user = $this->userLoader->loadUserByOpenId($obj->getOpenId());
-        if (!$user) {
+        if ($user === null) {
             throw new ApiException('找不到小程序用户');
+        }
+
+        if (!$user instanceof User) {
+            throw new ApiException('用户类型不正确');
         }
 
         $request = new AddRequest();
