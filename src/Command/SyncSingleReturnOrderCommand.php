@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Tourze\LockCommandBundle\Command\LockableCommand;
+use WechatMiniProgramDeliveryReturnBundle\Exception\ReturnOrderNotFoundException;
 use WechatMiniProgramDeliveryReturnBundle\Repository\DeliveryReturnOrderRepository;
 use WechatMiniProgramDeliveryReturnBundle\Service\DeliveryReturnService;
 
@@ -35,7 +36,7 @@ class SyncSingleReturnOrderCommand extends LockableCommand
             'shopOrderId' => $input->getArgument('shopOrderId'),
         ]);
         if ($order === null) {
-            throw new \RuntimeException('找不到退货单');
+            throw new ReturnOrderNotFoundException('找不到退货单');
         }
 
         $this->deliveryReturnService->syncReturnOrder($order);

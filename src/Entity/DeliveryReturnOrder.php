@@ -2,10 +2,9 @@
 
 namespace WechatMiniProgramDeliveryReturnBundle\Entity;
 
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Tourze\Arrayable\ApiArrayInterface;
-use Tourze\DoctrineSnowflakeBundle\Service\SnowflakeIdGenerator;
+use Tourze\DoctrineSnowflakeBundle\Traits\SnowflakeKeyAware;
 use Tourze\DoctrineTimestampBundle\Traits\TimestampableAware;
 use WechatMiniProgramBundle\Entity\Account;
 use WechatMiniProgramDeliveryReturnBundle\Enum\DeliveryReturnOrderStatus;
@@ -17,12 +16,7 @@ use WechatMiniProgramDeliveryReturnBundle\Repository\DeliveryReturnOrderReposito
 class DeliveryReturnOrder implements ApiArrayInterface
 , \Stringable{
     use TimestampableAware;
-
-    #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(SnowflakeIdGenerator::class)]
-    #[ORM\Column(type: Types::BIGINT, nullable: false, options: ['comment' => 'ID'])]
-    private ?string $id = null;
+    use SnowflakeKeyAware;
 
     #[ORM\ManyToOne]
     private ?Account $account = null;
@@ -65,11 +59,6 @@ class DeliveryReturnOrder implements ApiArrayInterface
 
     #[ORM\Column(length: 20, nullable: true, options: ['comment' => '运力公司编码'])]
     private ?string $deliveryId = null;
-
-    public function getId(): ?string
-    {
-        return $this->id;
-    }
 
     public function getAccount(): ?Account
     {

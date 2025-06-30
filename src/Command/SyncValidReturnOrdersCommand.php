@@ -16,7 +16,7 @@ use WechatMiniProgramDeliveryReturnBundle\Entity\DeliveryReturnOrder;
 use WechatMiniProgramDeliveryReturnBundle\Enum\DeliveryReturnOrderStatus;
 use WechatMiniProgramDeliveryReturnBundle\Repository\DeliveryReturnOrderRepository;
 
-#[AsCronTask('*/15 * * * *')]
+#[AsCronTask(expression: '*/15 * * * *')]
 #[AsCommand(name: self::NAME, description: '同步所有有效的退货单信息到本地')]
 class SyncValidReturnOrdersCommand extends LockableCommand
 {
