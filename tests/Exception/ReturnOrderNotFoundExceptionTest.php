@@ -1,16 +1,21 @@
 <?php
 
-namespace WechatMiniProgramDeliveryReturnBundle\Tests\Unit\Exception;
+namespace WechatMiniProgramDeliveryReturnBundle\Tests\Exception;
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use Tourze\PHPUnitBase\AbstractExceptionTestCase;
 use WechatMiniProgramDeliveryReturnBundle\Exception\ReturnOrderNotFoundException;
 
-class ReturnOrderNotFoundExceptionTest extends TestCase
+/**
+ * @internal
+ */
+#[CoversClass(ReturnOrderNotFoundException::class)]
+final class ReturnOrderNotFoundExceptionTest extends AbstractExceptionTestCase
 {
     public function testExceptionIsInstanceOfRuntimeException(): void
     {
         $exception = new ReturnOrderNotFoundException();
-        
+
         $this->assertInstanceOf(\RuntimeException::class, $exception);
     }
 
@@ -18,7 +23,7 @@ class ReturnOrderNotFoundExceptionTest extends TestCase
     {
         $message = 'Return order not found with ID: 123';
         $exception = new ReturnOrderNotFoundException($message);
-        
+
         $this->assertEquals($message, $exception->getMessage());
     }
 
@@ -27,7 +32,7 @@ class ReturnOrderNotFoundExceptionTest extends TestCase
         $message = 'Return order not found';
         $code = 404;
         $exception = new ReturnOrderNotFoundException($message, $code);
-        
+
         $this->assertEquals($message, $exception->getMessage());
         $this->assertEquals($code, $exception->getCode());
     }
@@ -36,7 +41,7 @@ class ReturnOrderNotFoundExceptionTest extends TestCase
     {
         $previousException = new \Exception('Previous error');
         $exception = new ReturnOrderNotFoundException('Current error', 0, $previousException);
-        
+
         $this->assertSame($previousException, $exception->getPrevious());
     }
 }

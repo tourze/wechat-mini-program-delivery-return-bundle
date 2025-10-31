@@ -19,6 +19,9 @@ class UnbindRequest extends WithAccountRequest
         return '/cgi-bin/express/delivery/return/unbind';
     }
 
+    /**
+     * @return array<string, mixed>|null
+     */
     public function getRequestOptions(): ?array
     {
         $payload = [

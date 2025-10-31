@@ -6,6 +6,8 @@ services:
 
   WechatMiniProgramDeliveryReturnBundle\Command\:
     resource: '../../Command/'
+  WechatMiniProgramDeliveryReturnBundle\Controller\:
+    resource: '../../Controller/'
   WechatMiniProgramDeliveryReturnBundle\EventSubscriber\:
     resource: '../../EventSubscriber/'
   WechatMiniProgramDeliveryReturnBundle\Repository\:

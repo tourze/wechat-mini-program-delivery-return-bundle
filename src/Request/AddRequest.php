@@ -31,7 +31,7 @@ class AddRequest extends WithAccountRequest
     private string $orderPath;
 
     /**
-     * @var array 退货商品list
+     * @var array<int, array<string, mixed>> 退货商品list
      *            {
      *            "name":"xxx",//退货商品的名称
      *            "url":"xxx"//退货商品图片的url
@@ -49,6 +49,9 @@ class AddRequest extends WithAccountRequest
         return '/cgi-bin/express/delivery/return/add';
     }
 
+    /**
+     * @return array<string, mixed>|null
+     */
     public function getRequestOptions(): ?array
     {
         $payload = [
@@ -119,11 +122,17 @@ class AddRequest extends WithAccountRequest
         $this->orderPath = $orderPath;
     }
 
+    /**
+     * @return array<int, array<string, mixed>>
+     */
     public function getGoodsList(): array
     {
         return $this->goodsList;
     }
 
+    /**
+     * @param array<int, array<string, mixed>> $goodsList
+     */
     public function setGoodsList(array $goodsList): void
     {
         $this->goodsList = $goodsList;

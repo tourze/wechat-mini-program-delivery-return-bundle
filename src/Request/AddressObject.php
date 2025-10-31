@@ -112,20 +112,40 @@ class AddressObject
         $this->address = $address;
     }
 
-    public static function fromArray(array $item): static
+    /**
+     * @param array<string, mixed> $item
+     */
+    public static function fromArray(array $item): self
     {
-        $obj = new static();
+        $obj = new self();
+
+        assert(isset($item['name']) && is_string($item['name']), 'name must be a string');
         $obj->setName($item['name']);
+
+        assert(isset($item['mobile']) && is_string($item['mobile']), 'mobile must be a string');
         $obj->setMobile($item['mobile']);
+
+        assert(isset($item['country']) && is_string($item['country']), 'country must be a string');
         $obj->setCountry($item['country']);
+
+        assert(isset($item['province']) && is_string($item['province']), 'province must be a string');
         $obj->setProvince($item['province']);
+
+        assert(isset($item['city']) && is_string($item['city']), 'city must be a string');
         $obj->setCity($item['city']);
+
+        assert(isset($item['area']) && is_string($item['area']), 'area must be a string');
         $obj->setArea($item['area']);
+
+        assert(isset($item['address']) && is_string($item['address']), 'address must be a string');
         $obj->setAddress($item['address']);
 
         return $obj;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         return [

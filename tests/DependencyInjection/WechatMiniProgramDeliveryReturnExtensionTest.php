@@ -2,30 +2,39 @@
 
 namespace WechatMiniProgramDeliveryReturnBundle\Tests\DependencyInjection;
 
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use PHPUnit\Framework\Attributes\CoversClass;
+use Tourze\PHPUnitSymfonyUnitTest\AbstractDependencyInjectionExtensionTestCase;
 use WechatMiniProgramDeliveryReturnBundle\DependencyInjection\WechatMiniProgramDeliveryReturnExtension;
 
-class WechatMiniProgramDeliveryReturnExtensionTest extends TestCase
+/**
+ * @internal
+ */
+#[CoversClass(WechatMiniProgramDeliveryReturnExtension::class)]
+final class WechatMiniProgramDeliveryReturnExtensionTest extends AbstractDependencyInjectionExtensionTestCase
 {
     private WechatMiniProgramDeliveryReturnExtension $extension;
-    private ContainerBuilder $container;
+
+    public function testGetAlias(): void
+    {
+        $alias = $this->extension->getAlias();
+        $this->assertSame('wechat_mini_program_delivery_return', $alias);
+    }
+
+    public function testServicesYamlFileExists(): void
+    {
+        $servicesFile = dirname(__DIR__, 2) . '/src/Resources/config/services.yaml';
+        $this->assertFileExists($servicesFile);
+    }
+
+    public function testFileLocatorPath(): void
+    {
+        $expectedPath = dirname(__DIR__, 2) . '/src/Resources/config';
+        $this->assertDirectoryExists($expectedPath);
+    }
 
     protected function setUp(): void
     {
+        parent::setUp();
         $this->extension = new WechatMiniProgramDeliveryReturnExtension();
-        $this->container = new ContainerBuilder();
-    }
-
-    public function testLoad(): void
-    {
-        $configs = [];
-        
-        $this->extension->load($configs, $this->container);
-        
-        // 验证服务是否已注册
-        $this->assertTrue($this->container->has('WechatMiniProgramDeliveryReturnBundle\Service\DeliveryReturnService'));
-        $this->assertTrue($this->container->has('WechatMiniProgramDeliveryReturnBundle\Command\SyncSingleReturnOrderCommand'));
-        $this->assertTrue($this->container->has('WechatMiniProgramDeliveryReturnBundle\Command\SyncValidReturnOrdersCommand'));
     }
 }

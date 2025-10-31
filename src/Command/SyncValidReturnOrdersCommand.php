@@ -32,17 +32,24 @@ class SyncValidReturnOrdersCommand extends LockableCommand
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $dayNum = $_ENV['WECHAT_DELIVERY_RETURN_SYNC_RETURN_ORDER_DAY_NUM'] ?? 15;
+        assert(is_numeric($dayNum), 'WECHAT_DELIVERY_RETURN_SYNC_RETURN_ORDER_DAY_NUM must be numeric');
+
         $orders = $this->orderRepository->createQueryBuilder('a')
             ->where('(a.orderStatus IS NULL OR a.orderStatus NOT IN (:statusList)) AND a.createTime>:minTime')
             ->setParameter('statusList', [
                 DeliveryReturnOrderStatus::Cancelled,
             ])
-            ->setParameter('minTime', CarbonImmutable::now()->subDays($_ENV['WECHAT_DELIVERY_RETURN_SYNC_RETURN_ORDER_DAY_NUM'] ?? 15))
+            ->setParameter('minTime', CarbonImmutable::now()->subDays((int) $dayNum))
             ->getQuery()
-            ->toIterable();
+            ->toIterable()
+        ;
 
         foreach ($orders as $order) {
-            /* @var DeliveryReturnOrder $order */
+            if (!$order instanceof DeliveryReturnOrder) {
+                continue;
+            }
+
             $output->writeln("开始异步检查：{$order->getId()}");
 
             $message = new RunCommandMessage();

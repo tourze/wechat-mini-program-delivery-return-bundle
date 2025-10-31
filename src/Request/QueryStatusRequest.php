@@ -19,6 +19,9 @@ class QueryStatusRequest extends WithAccountRequest
         return '/cgi-bin/express/delivery/return/get';
     }
 
+    /**
+     * @return array<string, mixed>|null
+     */
     public function getRequestOptions(): ?array
     {
         $payload = [
