@@ -2,9 +2,8 @@
 
 namespace WechatMiniProgramDeliveryReturnBundle\Tests\Request;
 
+use HttpClientBundle\Test\RequestTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
-use HttpClientBundle\Tests\Request\RequestTestCase;
 use WechatMiniProgramBundle\Entity\Account;
 use WechatMiniProgramDeliveryReturnBundle\Request\QueryStatusRequest;
 
