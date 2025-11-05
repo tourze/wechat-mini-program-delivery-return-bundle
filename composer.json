@@ -37,7 +37,7 @@
     "tourze/symfony-dependency-service-loader": "1.0.*",
     "tourze/symfony-lock-command-bundle": "1.0.*",
     "tourze/wechat-mini-program-auth-bundle": "0.0.*",
-    "tourze/wechat-mini-program-bundle": "0.1.*",
+    "tourze/wechat-mini-program-bundle": "1.0.*",
     "tourze/wechat-mini-program-user-contracts": "0.0.*"
   },
   "require-dev": {
@@ -51,7 +51,7 @@
     "tourze/phpunit-symfony-kernel-test": "1.0.*",
     "tourze/phpunit-symfony-unit-test": "1.*",
     "tourze/phpunit-symfony-web-test": "1.*",
-    "tourze/wechat-mini-program-appid-contracts": "0.0.*"
+    "tourze/wechat-mini-program-appid-contracts": "1.0.*"
   },
   "autoload": {
     "psr-4": {
