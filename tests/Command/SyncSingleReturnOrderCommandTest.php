@@ -65,8 +65,8 @@ final class SyncSingleReturnOrderCommandTest extends TestCase
         // 1. Entity 类包含复杂的属性映射和方法，抽象接口无法充分模拟其行为
         // 2. 测试需要验证具体的实体属性访问方法（getId、getShopOrderId）
         // 3. Command 测试需要模拟真实的实体对象行为
-        $order = $this->createMock(DeliveryReturnOrder::class);
-        $order->method('getId')->willReturn('1');
+        // 注意：由于getId()方法来自SnowflakeKeyAware trait可能被标记为final，使用部分Mock
+        $order = $this->createPartialMock(DeliveryReturnOrder::class, ['getShopOrderId']);
         $order->method('getShopOrderId')->willReturn('ORDER-001');
 
         $this->orderRepository->expects($this->once())
