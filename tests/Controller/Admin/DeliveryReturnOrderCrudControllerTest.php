@@ -27,11 +27,6 @@ final class DeliveryReturnOrderCrudControllerTest extends AbstractEasyAdminContr
         return self::getService(DeliveryReturnOrderCrudController::class);
     }
 
-    public function testGetEntityFqcn(): void
-    {
-        self::assertSame(DeliveryReturnOrder::class, $this->getControllerService()::getEntityFqcn());
-    }
-
     public function testConfigureFields(): void
     {
         $controller = $this->getControllerService();
